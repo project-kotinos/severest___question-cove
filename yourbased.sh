@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -ex
 export DEBIAN_FRONTEND=noninteractive
-apt-get update && apt-get install -y tzdata
+apt-get update && apt-get install -y tzdata unzip
 gem install bundler -v 2.0.1
 apt-get install -y mysql-server-5.7 mysql-client-core-5.7 mysql-client-5.7
 # install
