@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -ex
+export DEBIAN_FRONTEND=noninteractive
+apt-get update && apt-get install -y tzdata
+gem install bundler -v 2.0.1
+apt-get install -y mysql-server-5.6 mysql-client-core-5.6 mysql-client-5.6
+# install
+wget -N http://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip -P ~/
+unzip ~/chromedriver_linux64.zip -d ~/
+rm ~/chromedriver_linux64.zip
+sudo mv -f ~/chromedriver /usr/local/share/
+sudo chmod +x /usr/local/share/chromedriver
+sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+bundle install --jobs=3 --retry=3 --deployment --path=${BUNDLE_PATH:-vendor/bundle}
+# before_script
+mysql -u root -e 'create database questioncove_test;'
+# script
+RAILS_ENV=test bundle exec rake db:migrate --trace
+bundle exec rake db:test:prepare
+bundle exec rake
+bundle exec rails test:system
