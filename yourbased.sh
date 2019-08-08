@@ -8,9 +8,9 @@ apt-get install -y mysql-server-5.7 mysql-client-core-5.7 mysql-client-5.7
 wget -N http://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip -P ~/
 unzip ~/chromedriver_linux64.zip -d ~/
 rm ~/chromedriver_linux64.zip
-sudo mv -f ~/chromedriver /usr/local/share/
-sudo chmod +x /usr/local/share/chromedriver
-sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+mv -f ~/chromedriver /usr/local/share/
+chmod +x /usr/local/share/chromedriver
+ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
 bundle install --jobs=3 --retry=3 --deployment --path=${BUNDLE_PATH:-vendor/bundle}
 # before_script
 mysql -u root -e 'create database questioncove_test;'
