@@ -3,7 +3,7 @@ set -ex
 export DEBIAN_FRONTEND=noninteractive
 apt-get update && apt-get install -y tzdata unzip
 gem install bundler -v 2.0.1
-apt-get install -y mysql-server-5.7 mysql-client-core-5.7 mysql-client-5.7
+apt-get install -y mysql-server-5.7 mysql-client-core-5.7 mysql-client-5.7 libmysqlclient-dev
 # install
 wget -N http://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip -P ~/
 unzip ~/chromedriver_linux64.zip -d ~/
